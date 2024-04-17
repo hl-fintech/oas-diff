@@ -42,11 +42,12 @@ func NewRequestNonPathParameterCheck(diffReport *diff.Diff, operationsSources *d
 							result = append(result, ApiChange{
 								Id:          id,
 								Level:       level,
-								Args:        []any{paramLocation, paramName},
+								Args:        []any{paramName},
 								Operation:   operation,
 								OperationId: operationItem.Revision.OperationID,
 								Path:        path,
 								Source:      load.NewSource(source),
+								Tag:         AddRequestQueryTag,
 							})
 
 							break

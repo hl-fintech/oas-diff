@@ -33,6 +33,7 @@ func RequestParameterRemovedCheck(diffReport *diff.Diff, operationsSources *diff
 						OperationId: operationItem.Revision.OperationID,
 						Path:        path,
 						Source:      load.NewSource(source),
+						Tag:         DelRequestQueryTag,
 					})
 				}
 			}

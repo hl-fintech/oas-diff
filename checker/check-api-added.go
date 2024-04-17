@@ -24,6 +24,7 @@ func APIAddedCheck(diffReport *diff.Diff, operationsSources *diff.OperationsSour
 			OperationId: opConfig.OperationID,
 			Path:        path,
 			Source:      load.NewSource((*operationsSources)[opConfig]),
+			Tag:         AddApiTag,
 		})
 	}
 

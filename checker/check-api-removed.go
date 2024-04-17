@@ -36,6 +36,7 @@ func APIRemovedCheck(diffReport *diff.Diff, operationsSources *diff.OperationsSo
 					Operation:   operation,
 					OperationId: op.OperationID,
 					Path:        path,
+					Tag:         DelApiTag,
 					Source:      load.NewSource(source),
 				})
 				continue
@@ -83,6 +84,7 @@ func APIRemovedCheck(diffReport *diff.Diff, operationsSources *diff.OperationsSo
 					Operation:   operation,
 					OperationId: op.OperationID,
 					Path:        path,
+					Tag:         DelApiTag,
 					Source:      load.NewSource(source),
 				})
 				continue

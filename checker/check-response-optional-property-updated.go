@@ -59,6 +59,7 @@ func ResponseOptionalPropertyUpdatedCheck(diffReport *diff.Diff, operationsSourc
 								Operation:   operation,
 								OperationId: operationItem.Revision.OperationID,
 								Path:        path,
+								Tag:         DelPropertyTag,
 								Source:      load.NewSource(source),
 							})
 						})
@@ -82,6 +83,7 @@ func ResponseOptionalPropertyUpdatedCheck(diffReport *diff.Diff, operationsSourc
 								Operation:   operation,
 								OperationId: operationItem.Revision.OperationID,
 								Path:        path,
+								Tag:         AddPropertyTag,
 								Source:      load.NewSource(source),
 							})
 						})

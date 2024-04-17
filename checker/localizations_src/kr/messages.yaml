@@ -1,0 +1,18 @@
+at: at
+in: in
+endpoint-added: "[API 신규 추가]"
+endpoint-deprecated: "[API 제거 예정]"
+new-optional-request-parameter: "request query(optional) 추가: %s"
+new-optional-request-property: "request property 추가: %s"
+new-required-request-parameter: "request query(필수) 추가: %s"
+request-body-type-changed: "request body type 변경(%s => %s)"
+request-parameter-removed: "request %s 삭제: %s"
+request-property-removed: "request property 삭제: %s"
+request-property-type-changed: "request property 타입 변경 %s(%s => %s)"
+api-removed-without-deprecation: "API 삭제"
+api-schema-removed: "[OBJ][DEL] %s"
+api-security-added: "%s 추가"
+api-security-removed: "%s 추가"
+response-property-type-changed: "%s (%s => %s) (%s status)"
+response-optional-property-removed: "%s (%s status)"
+response-optional-property-added: "%s (%s status)"

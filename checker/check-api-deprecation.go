@@ -11,8 +11,6 @@ const (
 	ParseErrorId               = "parsing-error"
 	APISunsetDateTooSmallId    = "api-sunset-date-too-small"
 	EndpointDeprecatedId       = "endpoint-deprecated"
-	DeprecateApiTag            = "deprecate-api"
-	ReactivateApiTag           = "reactivate-api"
 )
 
 func APIDeprecationCheck(diffReport *diff.Diff, operationsSources *diff.OperationsSourcesMap, config *Config) Changes {
