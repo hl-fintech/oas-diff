@@ -1,9 +1,6 @@
 package checker
 
 import (
-	"time"
-
-	"cloud.google.com/go/civil"
 	"github.com/tufin/oasdiff/diff"
 	"github.com/tufin/oasdiff/load"
 )
@@ -14,6 +11,8 @@ const (
 	ParseErrorId               = "parsing-error"
 	APISunsetDateTooSmallId    = "api-sunset-date-too-small"
 	EndpointDeprecatedId       = "endpoint-deprecated"
+	DeprecateApiTag            = "deprecate-api"
+	ReactivateApiTag           = "reactivate-api"
 )
 
 func APIDeprecationCheck(diffReport *diff.Diff, operationsSources *diff.OperationsSourcesMap, config *Config) Changes {
@@ -42,55 +41,56 @@ func APIDeprecationCheck(diffReport *diff.Diff, operationsSources *diff.Operatio
 					Operation:   operation,
 					OperationId: op.OperationID,
 					Path:        path,
+					Tag:         ReactivateApiTag,
 					Source:      load.NewSource(source),
 				})
 				continue
 			}
 
-			rawDate, date, err := getSunsetDate(op.Extensions)
-			if err != nil {
-				result = append(result, ApiChange{
-					Id:          APIDeprecatedSunsetParseId,
-					Level:       ERR,
-					Args:        []any{rawDate, err},
-					Operation:   operation,
-					OperationId: op.OperationID,
-					Path:        path,
-					Source:      load.NewSource(source),
-				})
-				continue
-			}
+			//rawDate, date, err := getSunsetDate(op.Extensions)
+			//if err != nil {
+			//	result = append(result, ApiChange{
+			//		Id:          APIDeprecatedSunsetParseId,
+			//		Level:       ERR,
+			//		Args:        []any{rawDate, err},
+			//		Operation:   operation,
+			//		OperationId: op.OperationID,
+			//		Path:        path,
+			//		Source:      load.NewSource(source),
+			//	})
+			//	continue
+			//}
 
-			days := date.DaysSince(civil.DateOf(time.Now()))
+			//days := date.DaysSince(civil.DateOf(time.Now()))
 
-			stability, err := getStabilityLevel(op.Extensions)
-			if err != nil {
-				result = append(result, ApiChange{
-					Id:          ParseErrorId,
-					Level:       ERR,
-					Args:        []any{err.Error()},
-					Operation:   operation,
-					OperationId: op.OperationID,
-					Path:        path,
-					Source:      load.NewSource(source),
-				})
-				continue
-			}
+			//stability, err := getStabilityLevel(op.Extensions)
+			//if err != nil {
+			//	result = append(result, ApiChange{
+			//		Id:          ParseErrorId,
+			//		Level:       ERR,
+			//		Args:        []any{err.Error()},
+			//		Operation:   operation,
+			//		OperationId: op.OperationID,
+			//		Path:        path,
+			//		Source:      load.NewSource(source),
+			//	})
+			//	continue
+			//}
 
-			deprecationDays := getDeprecationDays(config, stability)
+			//deprecationDays := getDeprecationDays(config, stability)
 
-			if days < deprecationDays {
-				result = append(result, ApiChange{
-					Id:          APISunsetDateTooSmallId,
-					Level:       ERR,
-					Args:        []any{date, deprecationDays},
-					Operation:   operation,
-					OperationId: op.OperationID,
-					Path:        path,
-					Source:      load.NewSource(source),
-				})
-				continue
-			}
+			//if days < deprecationDays {
+			//	result = append(result, ApiChange{
+			//		Id:          APISunsetDateTooSmallId,
+			//		Level:       ERR,
+			//		Args:        []any{date, deprecationDays},
+			//		Operation:   operation,
+			//		OperationId: op.OperationID,
+			//		Path:        path,
+			//		Source:      load.NewSource(source),
+			//	})
+			//	continue
+			//}
 
 			// not breaking changes
 			result = append(result, ApiChange{
@@ -98,6 +98,7 @@ func APIDeprecationCheck(diffReport *diff.Diff, operationsSources *diff.Operatio
 				Level:       INFO,
 				Operation:   operation,
 				OperationId: op.OperationID,
+				Tag:         DeprecateApiTag,
 				Path:        path,
 				Source:      load.NewSource(source),
 			})

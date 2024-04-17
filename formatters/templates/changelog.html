@@ -33,6 +33,7 @@
         }
 
         .change-type {
+            display: inline-flex;
             box-sizing: border-box;
             font-weight: 700;
             font-size: 12px;
@@ -48,6 +49,26 @@
             border-color: #C0FAE6;
             color: #00684A;
             margin-top: 2px;
+        }
+        .updated {
+            background-color: #E3FCF7;
+            border-color: #C0FAE6;
+            color: #00684A;
+        }
+        .deleted {
+            background-color: #fce3ea;
+            border-color: #fac0d1;
+            color: #680013;
+        }
+        .deprecated {
+            background-color: #cccccc;
+            border-color: #b9b9b9;
+            color: #262626;
+        }
+        .added {
+            background-color: #e3ecfc;
+            border-color: #c0cafa;
+            color: #001168;
         }
 
         .change {
@@ -106,22 +127,24 @@
     <div class="endpoint">
         <div class="endpoint-header">
             <span class="path">
-                <div class="">{{ $endpoint.Operation }}<!-- --> <!-- -->{{ $endpoint.Path }}</div>
+                {{ if or (eq  $endpoint.ApiStatus "deprecated") (eq  $endpoint.ApiStatus "deleted")}}
+                <del>{{ $endpoint.Operation }}<!-- --> <!-- -->{{ $endpoint.Path }}</del>
+                {{ else }}
+                {{ $endpoint.Operation }}<!-- --> <!-- -->{{ $endpoint.Path }}
+                {{ end }}
             </span>
-            <div class="change-type">Updated</div>
+            <div class="change-type {{ $endpoint.ApiStatus }}">{{ $endpoint.ApiStatus }}</div>
         </div>
+        {{ if eq $endpoint.ApiStatus "updated" }}
         <ul class="endpoint-changes">
             {{ range $changes }}
             <li class="change">
-            {{ if .IsBreaking }}
-            <div class="breaking tooltip" data-text="Breaking Change">
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none" viewBox="0 0 16 16" class="breaking-icon" role="img" aria-label="Important With Circle Icon"><path fill="currentColor" fill-rule="evenodd" d="M8 15A7 7 0 1 0 8 1a7 7 0 0 0 0 14ZM7 4.5a1 1 0 0 1 2 0v4a1 1 0 0 1-2 0v-4Zm2 7a1 1 0 1 1-2 0 1 1 0 0 1 2 0Z" clip-rule="evenodd"></path></svg>
-            </div>
-            {{ end }}
+                <div class="change-type {{ status .Tag }}"> {{ .Tag }}</div>
             {{ .Text }}
             </li>
             {{ end }}
         </ul>
+        {{ end }}
     </div>
     {{ end }}
 </body>

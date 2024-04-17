@@ -4,6 +4,7 @@ import (
 	"bytes"
 	"fmt"
 	"html/template"
+	"strings"
 
 	_ "embed"
 
@@ -43,7 +44,9 @@ type TemplateData struct {
 }
 
 func (f HTMLFormatter) RenderChangelog(changes checker.Changes, opts RenderOpts, specInfoPair *load.SpecInfoPair) ([]byte, error) {
-	tmpl := template.Must(template.New("changelog").Parse(changelog))
+	tmpl := template.Must(template.New("changelog").Funcs(template.FuncMap{
+		"status": getTagStatus,
+	}).Parse(changelog))
 
 	var out bytes.Buffer
 	if err := tmpl.Execute(&out, TemplateData{GroupChanges(changes, f.Localizer), specInfoPair.GetBaseVersion(), specInfoPair.GetRevisionVersion()}); err != nil {
@@ -55,4 +58,14 @@ func (f HTMLFormatter) RenderChangelog(changes checker.Changes, opts RenderOpts,
 
 func (f HTMLFormatter) SupportedOutputs() []Output {
 	return []Output{OutputDiff, OutputChangelog}
+}
+
+func getTagStatus(tag string) string {
+	if strings.HasPrefix(tag, DelType) || strings.HasPrefix(tag, DeprecateType) || strings.HasPrefix(tag, ModifyType) {
+		return "deleted"
+	}
+	if strings.HasPrefix(tag, AddType) {
+		return "added"
+	}
+	return "updated"
 }

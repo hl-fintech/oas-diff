@@ -15,7 +15,7 @@ const (
 type Endpoint struct {
 	Path      string
 	Operation string
-	TagType   string
+	ApiStatus string
 }
 
 type ChangesByEndpoint map[Endpoint]*Changes
@@ -27,7 +27,7 @@ func GroupChanges(changes checker.Changes, l checker.Localizer) ChangesByEndpoin
 	for _, change := range changes {
 		switch change.(type) {
 		case checker.ApiChange:
-			ep := Endpoint{Path: change.GetPath(), Operation: change.GetOperation(), TagType: getApiStatus(change.GetTag())}
+			ep := Endpoint{Path: change.GetPath(), Operation: change.GetOperation(), ApiStatus: getApiStatus(change.GetTag())}
 			if c, ok := apiChanges[ep]; ok {
 				*c = append(*c, Change{
 					IsBreaking: change.IsBreaking(),
