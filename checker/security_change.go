@@ -13,6 +13,7 @@ type SecurityChange struct {
 	Args    []any
 	Comment string
 	Level   Level
+	Tag     string
 
 	SourceFile      string
 	SourceLine      int
@@ -71,6 +72,13 @@ func (SecurityChange) GetPath() string {
 }
 
 func (c SecurityChange) GetSource() string {
+	return ""
+}
+
+func (c SecurityChange) GetTag() string {
+	if c.Tag != "" {
+		return c.Tag
+	}
 	return ""
 }
 
