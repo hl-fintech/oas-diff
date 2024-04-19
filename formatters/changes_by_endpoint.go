@@ -13,9 +13,9 @@ const (
 )
 
 type Endpoint struct {
+	ApiStatus string
 	Path      string
 	Operation string
-	ApiStatus string
 }
 
 type ChangesByEndpoint map[Endpoint]*Changes
