@@ -48,13 +48,13 @@ func GroupChanges(changes checker.Changes, l checker.Localizer) ChangesByEndpoin
 }
 
 func getApiStatus(tag string) string {
-	if strings.HasPrefix(tag, DelType) {
+	if strings.HasPrefix(tag, "del-api") {
 		return "deleted"
 	}
-	if strings.HasPrefix(tag, DeprecateType) {
+	if strings.HasPrefix(tag, "deprecate-api") {
 		return "deprecated"
 	}
-	if strings.HasPrefix(tag, AddType) {
+	if strings.HasPrefix(tag, "add-api") {
 		return "added"
 	}
 	return "updated"

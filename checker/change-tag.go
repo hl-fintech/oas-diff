@@ -16,4 +16,6 @@ const (
 	DelPropertyTag                = "del-field"
 	AddPropertyTag                = "add-field"
 	ModifyResponseTypeTag         = "modify-res-type"
+	AddMediaTypeTag               = "add-media-type"
+	DelMediaTypeTag               = "del-media-type"
 )
