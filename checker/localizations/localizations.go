@@ -808,6 +808,9 @@ var localizations = map[string]string{
 	"kr.messages.response-property-type-changed":                                      " %s (%s => %s) (%s status)",
 	"kr.messages.response-optional-property-removed":                                  " %s (%s status)",
 	"kr.messages.response-optional-property-added":                                    " %s (%s status)",
+	"kr.messages.request-parameter-default-value-added":                               " %s request parameter %s, 기본값(%s) 추가",
+	"kr.messages.request-parameter-default-value-changed":                             " %s request parameter %s, 기본값(%s => $s) 변경",
+	"kr.messages.request-parameter-default-value-removed":                             " %s request parameter %s, 기본값(%s) 삭제",
 }
 
 type Replacements map[string]interface{}

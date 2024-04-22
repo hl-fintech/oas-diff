@@ -18,4 +18,7 @@ const (
 	ModifyResponseTypeTag         = "modify-res-type"
 	AddMediaTypeTag               = "add-media-type"
 	DelMediaTypeTag               = "del-media-type"
+	AddParameterTag               = "add-param-property"
+	DelParameterTag               = "del-param-property"
+	ModifyParameterTag            = "modify-param-property"
 )
