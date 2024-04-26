@@ -811,6 +811,7 @@ var localizations = map[string]string{
 	"kr.messages.request-parameter-default-value-added":                               " %s request parameter %s, 기본값(%s) 추가",
 	"kr.messages.request-parameter-default-value-changed":                             " %s request parameter %s, 기본값(%s => $s) 변경",
 	"kr.messages.request-parameter-default-value-removed":                             " %s request parameter %s, 기본값(%s) 삭제",
+	"kr.messages.response-property-enum-value-removed":                                " %s 내 허용 가능한 enum 값 %s 삭제 (%s status)",
 }
 
 type Replacements map[string]interface{}
