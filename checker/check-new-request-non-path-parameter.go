@@ -34,20 +34,26 @@ func NewRequestNonPathParameterCheck(diffReport *diff.Diff, operationsSources *d
 						if param.Value.Name == paramName {
 							id := NewRequiredRequestParameterId
 							level := ERR
+							tag := AddRequestQueryTag
 							if !param.Value.Required {
 								id = NewOptionalRequestParameterId
 								level = INFO
 							}
+
+							if paramLocation == "header" {
+								tag = AddRequestHeaderTag
+							}
+
 							source := (*operationsSources)[operationItem.Revision]
 							result = append(result, ApiChange{
 								Id:          id,
 								Level:       level,
-								Args:        []any{paramName},
+								Args:        []any{paramLocation, paramName},
 								Operation:   operation,
 								OperationId: operationItem.Revision.OperationID,
 								Path:        path,
 								Source:      load.NewSource(source),
-								Tag:         AddRequestQueryTag,
+								Tag:         tag,
 							})
 
 							break
