@@ -9,6 +9,8 @@ const (
 	DelSecurityTag                = "del-security"
 	AddRequestQueryTag            = "add-req-query"
 	DelRequestQueryTag            = "del-req-query"
+	AddRequestHeaderTag           = "add-req-header"
+	DelRequestHeaderTag           = "del-req-header"
 	ModifyRequestParameterTypeTag = "modify-req-field"
 	ModifyReqTypeTag              = "modify-req-type"
 	AddRequestPropertyTag         = "add-req-field"
