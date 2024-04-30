@@ -348,11 +348,11 @@ func GetAllRules() []BackwardCompatibilityRule {
 		newBackwardCompatibilityRule(ResponseNonSuccessStatusRemovedId, ERR, false, ResponseNonSuccessStatusUpdatedCheck),
 		newBackwardCompatibilityRule(ResponseNonSuccessStatusAddedId, INFO, false, ResponseNonSuccessStatusUpdatedCheck),
 		// APIOperationIdUpdatedCheck
-		newBackwardCompatibilityRule(APIOperationIdRemovedId, ERR, false, APIOperationIdUpdatedCheck),
-		newBackwardCompatibilityRule(APIOperationIdAddId, INFO, false, APIOperationIdUpdatedCheck),
+		//newBackwardCompatibilityRule(APIOperationIdRemovedId, ERR, false, APIOperationIdUpdatedCheck),
+		//newBackwardCompatibilityRule(APIOperationIdAddId, INFO, false, APIOperationIdUpdatedCheck),
 		// APITagUpdatedCheck
-		newBackwardCompatibilityRule(APITagRemovedId, ERR, false, APITagUpdatedCheck),
-		newBackwardCompatibilityRule(APITagAddedId, INFO, false, APITagUpdatedCheck),
+		//newBackwardCompatibilityRule(APITagRemovedId, ERR, false, APITagUpdatedCheck),
+		//newBackwardCompatibilityRule(APITagAddedId, INFO, false, APITagUpdatedCheck),
 		// APIComponentsSchemaRemovedCheck
 		newBackwardCompatibilityRule(APISchemasRemovedId, ERR, false, APIComponentsSchemaRemovedCheck),
 		// ResponseParameterEnumValueRemovedCheck

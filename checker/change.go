@@ -21,4 +21,5 @@ type Change interface {
 	MatchIgnore(ignorePath, ignoreLine string, l Localizer) bool
 	SingleLineError(l Localizer, colorMode ColorMode) string
 	MultiLineError(l Localizer, colorMode ColorMode) string
+	GetTag() string
 }

@@ -27,6 +27,7 @@ func checkGlobalSecurity(diffReport *diff.Diff, operationsSources *diff.Operatio
 			Id:    APIGlobalSecurityAddedCheckId,
 			Level: INFO,
 			Args:  []any{addedSecurity},
+			Tag:   AddSecurityTag,
 		})
 	}
 
@@ -35,6 +36,7 @@ func checkGlobalSecurity(diffReport *diff.Diff, operationsSources *diff.Operatio
 			Id:    APIGlobalSecurityRemovedCheckId,
 			Level: INFO,
 			Args:  []any{removedSecurity},
+			Tag:   DelSecurityTag,
 		})
 	}
 
@@ -45,6 +47,7 @@ func checkGlobalSecurity(diffReport *diff.Diff, operationsSources *diff.Operatio
 					Id:    APIGlobalSecurityScopeAddedId,
 					Level: INFO,
 					Args:  []any{addedScope, securitySchemeName},
+					Tag:   AddSecurityTag,
 				})
 			}
 			for _, deletedScope := range updatedSecuritySchemeScopes.Deleted {
@@ -52,6 +55,7 @@ func checkGlobalSecurity(diffReport *diff.Diff, operationsSources *diff.Operatio
 					Id:    APIGlobalSecurityScopeRemovedId,
 					Level: INFO,
 					Args:  []any{deletedScope, securitySchemeName},
+					Tag:   DelSecurityTag,
 				})
 			}
 		}
@@ -94,6 +98,7 @@ func APISecurityUpdatedCheck(diffReport *diff.Diff, operationsSources *diff.Oper
 					OperationId: operationItem.Revision.OperationID,
 					Path:        path,
 					Source:      load.NewSource(source),
+					Tag:         AddSecurityTag,
 				})
 			}
 
@@ -109,6 +114,7 @@ func APISecurityUpdatedCheck(diffReport *diff.Diff, operationsSources *diff.Oper
 					OperationId: operationItem.Revision.OperationID,
 					Path:        path,
 					Source:      load.NewSource(source),
+					Tag:         DelSecurityTag,
 				})
 			}
 
@@ -126,6 +132,7 @@ func APISecurityUpdatedCheck(diffReport *diff.Diff, operationsSources *diff.Oper
 							OperationId: operationItem.Revision.OperationID,
 							Path:        path,
 							Source:      load.NewSource(source),
+							Tag:         AddSecurityTag,
 						})
 					}
 					for _, deletedScope := range updatedSecuritySchemeScopes.Deleted {
@@ -137,6 +144,7 @@ func APISecurityUpdatedCheck(diffReport *diff.Diff, operationsSources *diff.Oper
 							OperationId: operationItem.Revision.OperationID,
 							Path:        path,
 							Source:      load.NewSource(source),
+							Tag:         DelSecurityTag,
 						})
 					}
 				}

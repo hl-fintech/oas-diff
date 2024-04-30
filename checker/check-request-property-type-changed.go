@@ -40,11 +40,12 @@ func RequestPropertyTypeChangedCheck(diffReport *diff.Diff, operationsSources *d
 						result = append(result, ApiChange{
 							Id:          RequestBodyTypeChangedId,
 							Level:       conditionalError(breakingTypeFormatChangedInRequestProperty(typeDiff, formatDiff, mediaType, schemaDiff), INFO),
-							Args:        []any{typeDiff.From, formatDiff.From, typeDiff.To, formatDiff.To},
+							Args:        []any{typeDiff.From, typeDiff.To},
 							Operation:   operation,
 							OperationId: operationItem.Revision.OperationID,
 							Path:        path,
 							Source:      load.NewSource(source),
+							Tag:         ModifyReqTypeTag,
 						})
 					}
 				}
@@ -67,11 +68,12 @@ func RequestPropertyTypeChangedCheck(diffReport *diff.Diff, operationsSources *d
 							result = append(result, ApiChange{
 								Id:          RequestPropertyTypeChangedId,
 								Level:       conditionalError(breakingTypeFormatChangedInRequestProperty(typeDiff, formatDiff, mediaType, schemaDiff), INFO),
-								Args:        []any{propertyFullName(propertyPath, propertyName), typeDiff.From, formatDiff.From, typeDiff.To, formatDiff.To},
+								Args:        []any{propertyFullName(propertyPath, propertyName), typeDiff.From, typeDiff.To},
 								Operation:   operation,
 								OperationId: operationItem.Revision.OperationID,
 								Path:        path,
 								Source:      load.NewSource(source),
+								Tag:         ModifyReqTypeTag,
 							})
 						}
 					})

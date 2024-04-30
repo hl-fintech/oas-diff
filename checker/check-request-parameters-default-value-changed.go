@@ -25,7 +25,7 @@ func RequestParameterDefaultValueChangedCheck(diffReport *diff.Diff, operationsS
 				continue
 			}
 			source := (*operationsSources)[operationItem.Revision]
-			appendResultItem := func(messageId string, a ...any) {
+			appendResultItem := func(messageId string, tag string, a ...any) {
 				result = append(result, ApiChange{
 					Id:          messageId,
 					Level:       ERR,
@@ -34,6 +34,7 @@ func RequestParameterDefaultValueChangedCheck(diffReport *diff.Diff, operationsS
 					OperationId: operationItem.Revision.OperationID,
 					Path:        path,
 					Source:      load.NewSource(source),
+					Tag:         tag,
 				})
 			}
 			for paramLocation, paramDiffs := range operationItem.ParametersDiff.Modified {
@@ -59,11 +60,11 @@ func RequestParameterDefaultValueChangedCheck(diffReport *diff.Diff, operationsS
 					}
 
 					if defaultValueDiff.From == nil {
-						appendResultItem(RequestParameterDefaultValueAddedId, paramLocation, paramName, defaultValueDiff.To)
+						appendResultItem(RequestParameterDefaultValueAddedId, AddParameterTag, paramLocation, paramName, defaultValueDiff.To)
 					} else if defaultValueDiff.To == nil {
-						appendResultItem(RequestParameterDefaultValueRemovedId, paramLocation, paramName, defaultValueDiff.From)
+						appendResultItem(RequestParameterDefaultValueRemovedId, DelParameterTag, paramLocation, paramName, defaultValueDiff.From)
 					} else {
-						appendResultItem(RequestParameterDefaultValueChangedId, paramLocation, paramName, defaultValueDiff.From, defaultValueDiff.To)
+						appendResultItem(RequestParameterDefaultValueChangedId, ModifyParameterTag, paramLocation, paramName, defaultValueDiff.From, defaultValueDiff.To)
 					}
 				}
 			}

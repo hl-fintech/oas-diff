@@ -15,6 +15,7 @@ type Change struct {
 	Source      string        `json:"source,omitempty" yaml:"source,omitempty"`
 	Section     string        `json:"section,omitempty" yaml:"section,omitempty"`
 	IsBreaking  bool          `json:"-" yaml:"-"`
+	Tag         string        `json:"tagType,omitempty" yaml:"tagType,omitempty"`
 }
 
 type Changes []Change
@@ -32,6 +33,7 @@ func NewChanges(originalChanges checker.Changes, l checker.Localizer) Changes {
 			OperationId: change.GetOperationId(),
 			Path:        change.GetPath(),
 			Source:      change.GetSource(),
+			Tag:         change.GetTag(),
 		}
 	}
 	return changes

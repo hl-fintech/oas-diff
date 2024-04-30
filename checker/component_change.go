@@ -14,6 +14,7 @@ type ComponentChange struct {
 	Comment   string
 	Level     Level
 	Component string
+	Tag       string
 
 	SourceFile      string
 	SourceLine      int
@@ -72,6 +73,13 @@ func (ComponentChange) GetPath() string {
 }
 
 func (c ComponentChange) GetSource() string {
+	return ""
+}
+
+func (c ComponentChange) GetTag() string {
+	if c.Tag != "" {
+		return c.Tag
+	}
 	return ""
 }
 

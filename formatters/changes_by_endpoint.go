@@ -1,8 +1,19 @@
 package formatters
 
-import "github.com/tufin/oasdiff/checker"
+import (
+	"github.com/tufin/oasdiff/checker"
+	"strings"
+)
+
+const (
+	AddType       = "add"
+	DelType       = "del"
+	ModifyType    = "mod"
+	DeprecateType = "dep"
+)
 
 type Endpoint struct {
+	ApiStatus string
 	Path      string
 	Operation string
 }
@@ -16,20 +27,35 @@ func GroupChanges(changes checker.Changes, l checker.Localizer) ChangesByEndpoin
 	for _, change := range changes {
 		switch change.(type) {
 		case checker.ApiChange:
-			ep := Endpoint{Path: change.GetPath(), Operation: change.GetOperation()}
+			ep := Endpoint{Path: change.GetPath(), Operation: change.GetOperation(), ApiStatus: getApiStatus(change.GetTag())}
 			if c, ok := apiChanges[ep]; ok {
 				*c = append(*c, Change{
 					IsBreaking: change.IsBreaking(),
 					Text:       change.GetUncolorizedText(l),
+					Tag:        change.GetTag(),
 				})
 			} else {
 				apiChanges[ep] = &Changes{Change{
 					IsBreaking: change.IsBreaking(),
 					Text:       change.GetUncolorizedText(l),
+					Tag:        change.GetTag(),
 				}}
 			}
 		}
 	}
 
 	return apiChanges
+}
+
+func getApiStatus(tag string) string {
+	if strings.HasPrefix(tag, "del-api") {
+		return "deleted"
+	}
+	if strings.HasPrefix(tag, "deprecate-api") {
+		return "deprecated"
+	}
+	if strings.HasPrefix(tag, "add-api") {
+		return "added"
+	}
+	return "updated"
 }

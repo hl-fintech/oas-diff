@@ -43,11 +43,12 @@ func ResponseParameterEnumValueRemovedCheck(diffReport *diff.Diff, operationsSou
 								result = append(result, ApiChange{
 									Id:          ResponsePropertyEnumValueRemovedId,
 									Level:       config.getLogLevel(ResponsePropertyEnumValueRemovedId, INFO),
-									Args:        []any{enumVal, propertyFullName(propertyPath, propertyName), responseStatus},
+									Args:        []any{propertyFullName(propertyPath, propertyName), enumVal, responseStatus},
 									Operation:   operation,
 									OperationId: operationItem.Revision.OperationID,
 									Path:        path,
 									Source:      load.NewSource(source),
+									Tag:         DelPropertyTag,
 								})
 							}
 						})

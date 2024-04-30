@@ -43,6 +43,7 @@ func ResponseMediaTypeUpdatedCheck(diffReport *diff.Diff, operationsSources *dif
 						OperationId: operationItem.Revision.OperationID,
 						Path:        path,
 						Source:      load.NewSource(source),
+						Tag:         DelMediaTypeTag,
 					})
 				}
 				for _, mediaType := range responsesDiff.ContentDiff.MediaTypeAdded {
@@ -54,6 +55,7 @@ func ResponseMediaTypeUpdatedCheck(diffReport *diff.Diff, operationsSources *dif
 						OperationId: operationItem.Revision.OperationID,
 						Path:        path,
 						Source:      load.NewSource(source),
+						Tag:         AddMediaTypeTag,
 					})
 				}
 			}

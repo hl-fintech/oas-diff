@@ -80,6 +80,7 @@ func RequestParameterTypeChangedCheck(diffReport *diff.Diff, operationsSources *
 						OperationId: operationItem.Revision.OperationID,
 						Path:        path,
 						Source:      load.NewSource(source),
+						Tag:         ModifyRequestParameterTypeTag,
 					})
 				}
 			}

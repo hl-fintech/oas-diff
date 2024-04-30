@@ -17,9 +17,9 @@ func descriptionId(id string) string {
 }
 
 func propertyFullName(propertyPath string, propertyNames ...string) string {
-	propertyFullName := strings.Join(propertyNames, "/")
+	propertyFullName := strings.Join(propertyNames, ".")
 	if propertyPath != "" {
-		propertyFullName = propertyPath + "/" + propertyFullName
+		propertyFullName = propertyPath + "." + propertyFullName
 	}
 	return propertyFullName
 }
@@ -69,7 +69,7 @@ func processModifiedPropertiesDiff(propertyPath string, propertyName string, sch
 		if propertyPath == "" {
 			propertyPath = propertyName
 		} else {
-			propertyPath = propertyPath + "/" + propertyName
+			propertyPath = propertyPath + "." + propertyName
 		}
 	}
 
@@ -92,7 +92,7 @@ func processModifiedPropertiesDiff(propertyPath string, propertyName string, sch
 	}
 
 	if schemaDiff.ItemsDiff != nil {
-		processModifiedPropertiesDiff(fmt.Sprintf("%s/items", propertyPath), "", schemaDiff.ItemsDiff, schemaDiff, processor)
+		processModifiedPropertiesDiff(fmt.Sprintf("%s[]", propertyPath), "", schemaDiff.ItemsDiff, schemaDiff, processor)
 	}
 
 	if schemaDiff.PropertiesDiff != nil {
@@ -114,7 +114,7 @@ func processAddedPropertiesDiff(propertyPath string, propertyName string, schema
 		if propertyPath == "" {
 			propertyPath = propertyName
 		} else {
-			propertyPath = propertyPath + "/" + propertyName
+			propertyPath = propertyPath + "." + propertyName
 		}
 	}
 
@@ -137,7 +137,7 @@ func processAddedPropertiesDiff(propertyPath string, propertyName string, schema
 	}
 
 	if schemaDiff.ItemsDiff != nil {
-		processAddedPropertiesDiff(fmt.Sprintf("%s/items", propertyPath), "", schemaDiff.ItemsDiff, schemaDiff, processor)
+		processAddedPropertiesDiff(fmt.Sprintf("%s[]", propertyPath), "", schemaDiff.ItemsDiff, schemaDiff, processor)
 	}
 
 	if schemaDiff.PropertiesDiff != nil {
@@ -163,7 +163,7 @@ func processDeletedPropertiesDiff(propertyPath string, propertyName string, sche
 		if propertyPath == "" {
 			propertyPath = propertyName
 		} else {
-			propertyPath = propertyPath + "/" + propertyName
+			propertyPath = propertyPath + "." + propertyName
 		}
 	}
 
@@ -185,7 +185,7 @@ func processDeletedPropertiesDiff(propertyPath string, propertyName string, sche
 	}
 
 	if schemaDiff.ItemsDiff != nil {
-		processDeletedPropertiesDiff(fmt.Sprintf("%s/items", propertyPath), "", schemaDiff.ItemsDiff, schemaDiff, processor)
+		processDeletedPropertiesDiff(fmt.Sprintf("%s[]", propertyPath), "", schemaDiff.ItemsDiff, schemaDiff, processor)
 	}
 
 	if schemaDiff.PropertiesDiff != nil {

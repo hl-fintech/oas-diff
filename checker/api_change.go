@@ -18,6 +18,7 @@ type ApiChange struct {
 	OperationId string
 	Path        string
 	Source      *load.Source
+	Tag         string
 
 	SourceFile      string
 	SourceLine      int
@@ -82,6 +83,12 @@ func (c ApiChange) GetPath() string {
 
 func (c ApiChange) GetSource() string {
 	return c.Source.String()
+}
+func (c ApiChange) GetTag() string {
+	if c.Tag != "" {
+		return c.Tag
+	}
+	return ""
 }
 
 func (c ApiChange) GetSourceFile() string {

@@ -43,6 +43,7 @@ func RequestPropertyUpdatedCheck(diffReport *diff.Diff, operationsSources *diff.
 								OperationId: operationItem.Revision.OperationID,
 								Path:        path,
 								Source:      load.NewSource(source),
+								Tag:         DelRequestPropertyTag,
 							})
 						}
 					})
@@ -65,6 +66,7 @@ func RequestPropertyUpdatedCheck(diffReport *diff.Diff, operationsSources *diff.
 								OperationId: operationItem.Revision.OperationID,
 								Path:        path,
 								Source:      load.NewSource(source),
+								Tag:         AddRequestPropertyTag,
 							})
 						} else {
 							result = append(result, ApiChange{
@@ -75,6 +77,7 @@ func RequestPropertyUpdatedCheck(diffReport *diff.Diff, operationsSources *diff.
 								OperationId: operationItem.Revision.OperationID,
 								Path:        path,
 								Source:      load.NewSource(source),
+								Tag:         AddRequestPropertyTag,
 							})
 						}
 					})
