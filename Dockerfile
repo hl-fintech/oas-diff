@@ -16,5 +16,7 @@ RUN VERSION=$(git describe --always --tags) && \
 ### Create image ###
 FROM alpine:3
 WORKDIR /usr/bin
+ENV PLATFORM github-action
 COPY --from=builder /go/src/app/oasdiff .
-ENTRYPOINT ["/usr/bin/oasdiff"]
+COPY entrypoint.sh /entrypoint.sh
+ENTRYPOINT ["/entrypoint.sh"]
