@@ -14,11 +14,8 @@ RUN CGO_ENABLED=0 GOOS=linux go build \
 ### Create image ###
 FROM alpine:3
 USER root
-WORKDIR /usr/bin
 ENV PLATFORM github-action
-COPY --from=builder /go/src/app/oasdiff .
-
+COPY --from=builder /go/src/app/oasdiff /usr/bin
 COPY entrypoint.sh /entrypoint.sh
-RUN echo "$GITHUB_OUTPUT"
 
 ENTRYPOINT ["/entrypoint.sh"]
