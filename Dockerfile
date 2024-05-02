@@ -19,4 +19,6 @@ ENV PLATFORM github-action
 COPY --from=builder /go/src/app/oasdiff .
 
 COPY entrypoint.sh /entrypoint.sh
+RUN echo "$GITHUB_OUTPUT"
+
 ENTRYPOINT ["/entrypoint.sh"]
