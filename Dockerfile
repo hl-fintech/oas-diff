@@ -8,10 +8,8 @@ COPY go.mod go.sum ./
 RUN go mod download
 COPY . .
 
-RUN VERSION=$(git describe --always --tags) && \
-    CGO_ENABLED=0 GOOS=linux go build \
-    -mod=readonly \
-    -ldflags "-s -w -X github.com/hl-fintech/oas-diff/build.Version=${VERSION}"
+RUN CGO_ENABLED=0 GOOS=linux go build \
+    -mod=readonly
 
 ### Create image ###
 FROM alpine:3
