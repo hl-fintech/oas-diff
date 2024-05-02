@@ -9,3 +9,5 @@ coverage.html
 
 # vscode files
 .vscode/*
+diff.html
+oas-diff.iml
