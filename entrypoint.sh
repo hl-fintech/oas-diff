@@ -22,24 +22,12 @@ write_output () {
 
 readonly base="$1"
 readonly revision="$2"
-readonly include_path_params="$3"
-readonly exclude_elements="$4"
-readonly composed="$5"
-readonly output_to_file="$6"
+readonly output_to_file="$3"
 
-echo "running oasdiff changelog base: $base, revision: $revision, include_path_params: $include_path_params, exclude_elements: $exclude_elements, composed: $composed, output_to_file: $output_to_file"
+echo "running oasdiff changelog base: $base, revision: $revision, output_to_file: $output_to_file"
 
 # Build flags to pass in command
-flags=""
-if [ "$include_path_params" = "true" ]; then
-    flags="$flags --include-path-params"
-fi
-if [ -n "$exclude_elements" ]; then
-    flags="$flags --exclude-elements $exclude_elements"
-fi
-if [ "$composed" = "true" ]; then
-    flags="$flags -c"
-fi
+flags="-f html"
 echo "flags: $flags"
 
 set -o pipefail

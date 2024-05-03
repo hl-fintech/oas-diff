@@ -8,15 +8,14 @@ COPY go.mod go.sum ./
 RUN go mod download
 COPY . .
 
-RUN VERSION=$(git describe --always --tags) && \
-    CGO_ENABLED=0 GOOS=linux go build \
-    -mod=readonly \
-    -ldflags "-s -w -X github.com/hl-fintech/oas-diff/build.Version=${VERSION}"
+RUN CGO_ENABLED=0 GOOS=linux go build \
+    -mod=readonly
 
 ### Create image ###
 FROM alpine:3
-WORKDIR /usr/bin
+USER root
 ENV PLATFORM github-action
-COPY --from=builder /go/src/app/oasdiff .
+COPY --from=builder /go/src/app/oasdiff /usr/bin
 COPY entrypoint.sh /entrypoint.sh
+
 ENTRYPOINT ["/entrypoint.sh"]

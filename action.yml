@@ -1,0 +1,23 @@
+name: 'OpenAPI Spec: changelog'
+description: 'Generate a changelog for OpenAPI Specification 3'
+inputs:
+  base:
+    description: 'Path of original OpenAPI spec in YAML or JSON format'
+    required: true
+  revision:
+    description: 'Path of revised OpenAPI spec in YAML or JSON format'
+    required: true
+  output-to-file:
+    description: 'Output to a file at the given path'
+    required: false
+    default: ''
+outputs:
+  changelog:
+    description: 'Output summary of API changelog'
+runs:
+  using: 'docker'
+  image: 'Dockerfile'
+  args:
+    - ${{ inputs.base }}
+    - ${{ inputs.revision }}
+    - ${{ inputs.output-to-file }}
