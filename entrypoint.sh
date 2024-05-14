@@ -27,7 +27,7 @@ readonly output_to_file="$3"
 echo "running oasdiff changelog base: $base, revision: $revision, output_to_file: $output_to_file"
 
 # Build flags to pass in command
-flags="-f html"
+flags="-l kr -f html"
 echo "flags: $flags"
 
 set -o pipefail
