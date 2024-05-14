@@ -45,6 +45,7 @@ func RequestParameterEnumValueUpdatedCheck(diffReport *diff.Diff, operationsSour
 							OperationId: operationItem.Revision.OperationID,
 							Path:        path,
 							Source:      load.NewSource(source),
+							Tag:         DelPropertyTag,
 						})
 					}
 					for _, enumVal := range enumDiff.Added {

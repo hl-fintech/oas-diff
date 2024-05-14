@@ -24,7 +24,7 @@ func ResponseParameterEnumValueRemovedCheck(diffReport *diff.Diff, operationsSou
 			}
 
 			source := (*operationsSources)[operationItem.Revision]
-			for responseStatus, responseDiff := range operationItem.ResponsesDiff.Modified {
+			for _, responseDiff := range operationItem.ResponsesDiff.Modified {
 				if responseDiff == nil ||
 					responseDiff.ContentDiff == nil ||
 					responseDiff.ContentDiff.MediaTypeModified == nil {
@@ -43,7 +43,7 @@ func ResponseParameterEnumValueRemovedCheck(diffReport *diff.Diff, operationsSou
 								result = append(result, ApiChange{
 									Id:          ResponsePropertyEnumValueRemovedId,
 									Level:       config.getLogLevel(ResponsePropertyEnumValueRemovedId, INFO),
-									Args:        []any{propertyFullName(propertyPath, propertyName), enumVal, responseStatus},
+									Args:        []any{propertyFullName(propertyPath, propertyName), enumVal},
 									Operation:   operation,
 									OperationId: operationItem.Revision.OperationID,
 									Path:        path,

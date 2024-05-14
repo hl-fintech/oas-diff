@@ -30,7 +30,7 @@ func ResponseOptionalPropertyUpdatedCheck(diffReport *diff.Diff, operationsSourc
 				continue
 			}
 
-			for responseStatus, responseDiff := range operationItem.ResponsesDiff.Modified {
+			for _, responseDiff := range operationItem.ResponsesDiff.Modified {
 				if responseDiff.ContentDiff == nil ||
 					responseDiff.ContentDiff.MediaTypeModified == nil {
 					continue
@@ -55,7 +55,7 @@ func ResponseOptionalPropertyUpdatedCheck(diffReport *diff.Diff, operationsSourc
 							result = append(result, ApiChange{
 								Id:          id,
 								Level:       level,
-								Args:        []any{propertyFullName(propertyPath, propertyName), responseStatus},
+								Args:        []any{propertyFullName(propertyPath, propertyName)},
 								Operation:   operation,
 								OperationId: operationItem.Revision.OperationID,
 								Path:        path,
@@ -79,7 +79,7 @@ func ResponseOptionalPropertyUpdatedCheck(diffReport *diff.Diff, operationsSourc
 							result = append(result, ApiChange{
 								Id:          id,
 								Level:       INFO,
-								Args:        []any{propertyFullName(propertyPath, propertyName), responseStatus},
+								Args:        []any{propertyFullName(propertyPath, propertyName)},
 								Operation:   operation,
 								OperationId: operationItem.Revision.OperationID,
 								Path:        path,

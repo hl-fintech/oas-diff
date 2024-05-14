@@ -62,10 +62,19 @@ func (f HTMLFormatter) SupportedOutputs() []Output {
 
 func getTagStatus(tag string) string {
 	if strings.HasPrefix(tag, DelType) || strings.HasPrefix(tag, DeprecateType) || strings.HasPrefix(tag, ModifyType) {
-		return "deleted"
+
+		if strings.Contains(tag, "res") {
+			return "deleted_res"
+		} else {
+			return "deleted"
+		}
 	}
 	if strings.HasPrefix(tag, AddType) {
-		return "added"
+		if strings.Contains(tag, "res") {
+			return "added_res"
+		} else {
+			return "added"
+		}
 	}
 	return "updated"
 }

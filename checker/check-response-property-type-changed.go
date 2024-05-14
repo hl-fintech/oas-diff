@@ -70,7 +70,7 @@ func ResponsePropertyTypeChangedCheck(diffReport *diff.Diff, operationsSources *
 								result = append(result, ApiChange{
 									Id:          ResponsePropertyTypeChangedId,
 									Level:       ERR,
-									Args:        []any{propertyFullName(propertyPath, propertyName), typeDiff.From, typeDiff.To, responseStatus},
+									Args:        []any{propertyFullName(propertyPath, propertyName), typeDiff.From, typeDiff.To},
 									Operation:   operation,
 									OperationId: operationItem.Revision.OperationID,
 									Path:        path,

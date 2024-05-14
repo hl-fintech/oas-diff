@@ -43,11 +43,12 @@ func RequestPropertyEnumValueUpdatedCheck(diffReport *diff.Diff, operationsSourc
 							result = append(result, ApiChange{
 								Id:          RequestPropertyEnumValueRemovedId,
 								Level:       conditionalError(!propertyDiff.Revision.ReadOnly, INFO),
-								Args:        []any{enumVal, propName},
+								Args:        []any{propName, enumVal},
 								Operation:   operation,
 								OperationId: operationItem.Revision.OperationID,
 								Path:        path,
 								Source:      load.NewSource(source),
+								Tag:         DelRequestPropertyTag,
 							})
 						}
 

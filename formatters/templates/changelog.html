@@ -60,6 +60,11 @@
             border-color: #fac0d1;
             color: #680013;
         }
+        .deleted_res {
+            background-color: #fce3ea;
+            border-color: #680013;
+            color: #680013;
+        }
         .deprecated {
             background-color: #cccccc;
             border-color: #b9b9b9;
@@ -70,7 +75,11 @@
             border-color: #c0cafa;
             color: #001168;
         }
-
+        .added_res {
+            background-color: #e3ecfc;
+            border-color: #001168;
+            color: #001168;
+        }
         .change {
         }
 
@@ -139,7 +148,7 @@
         <ul class="endpoint-changes">
             {{ range $changes }}
             <li class="change">
-                <div class="change-type {{ status .Tag }}"> {{ .Tag }}</div>
+                <div class="change-type {{ status .Tag }}"> {{ .Tag }} </div>
             {{ .Text }}
             </li>
             {{ end }}
