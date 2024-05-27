@@ -17,6 +17,8 @@ const (
 	DelRequestPropertyTag         = "del-req-field"
 	DelPropertyTag                = "del-res-field"
 	AddPropertyTag                = "add-res-field"
+	AddDataTag                    = "add-data"
+	DelDataTag                    = "del-data"
 	ModifyResponseTypeTag         = "modify-res-type"
 	AddMediaTypeTag               = "add-media-type"
 	DelMediaTypeTag               = "del-media-type"

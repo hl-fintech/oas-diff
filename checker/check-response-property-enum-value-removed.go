@@ -48,7 +48,7 @@ func ResponseParameterEnumValueRemovedCheck(diffReport *diff.Diff, operationsSou
 									OperationId: operationItem.Revision.OperationID,
 									Path:        path,
 									Source:      load.NewSource(source),
-									Tag:         DelPropertyTag,
+									Tag:         DelDataTag,
 								})
 							}
 						})

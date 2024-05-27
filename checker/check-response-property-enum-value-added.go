@@ -24,7 +24,7 @@ func ResponsePropertyEnumValueAddedCheck(diffReport *diff.Diff, operationsSource
 				continue
 			}
 			source := (*operationsSources)[operationItem.Revision]
-			for responseStatus, responseDiff := range operationItem.ResponsesDiff.Modified {
+			for _, responseDiff := range operationItem.ResponsesDiff.Modified {
 				if responseDiff == nil ||
 					responseDiff.ContentDiff == nil ||
 					responseDiff.ContentDiff.MediaTypeModified == nil {
@@ -55,12 +55,13 @@ func ResponsePropertyEnumValueAddedCheck(diffReport *diff.Diff, operationsSource
 								result = append(result, ApiChange{
 									Id:          id,
 									Level:       level,
-									Args:        []any{enumVal, propertyFullName(propertyPath, propertyName), responseStatus},
+									Args:        []any{propertyFullName(propertyPath, propertyName), enumVal},
 									Comment:     comment,
 									Operation:   operation,
 									OperationId: operationItem.Revision.OperationID,
 									Path:        path,
 									Source:      load.NewSource(source),
+									Tag:         AddDataTag,
 								})
 							}
 						})
